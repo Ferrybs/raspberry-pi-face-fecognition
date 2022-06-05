@@ -1,10 +1,6 @@
-import cv2
 import os
-
-from features.headshot.headshot import Headshot
-
+from features.camera.camera import Camera
 if __name__ == "__main__":
-    print(cv2.getBuildInformation())
-    Headshot("Felipe")
-    
+    dir_home = os.path.dirname(os.path.realpath(__file__))
+    Camera(dir_home).start()
 
