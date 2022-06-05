@@ -16,7 +16,10 @@ class Camera:
     def start(self):
         while True:
             ret, frame = self.__cam.read()
-            rgb_frame = frame[:, :, ::-1]
+            if not ret:
+                print("Failed to get frame")
+                break
+            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             face_locations = face_recognition.face_locations(rgb_frame)
             face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
             for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
